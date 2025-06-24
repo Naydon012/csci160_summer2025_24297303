@@ -4,8 +4,16 @@ input [7:0] char_in,
 output [7:0] char_out                                               
 
 );
+     //delay for each primitive gate.
+    
+    parameter DELAY_VAL = 1;
 
-wire not7, bit6, in_range;
+    // Wires for the 'in_range' detection logic.
+    // 'in_range_w' will be high if char_in is a lowercase letter.
+    
+    wire in_range_w;
+    wire not_in_range_w;
+
 
   genvar i;
   generate

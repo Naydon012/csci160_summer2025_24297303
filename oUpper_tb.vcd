@@ -1,0 +1,56 @@
+initial begin
+  $dumpfile("toUpper.vcd");     // Name of the output waveform file
+  $dumpvars(0, toUpper_tb);     // Name of your testbench module
+  // your test cases here
+end
+
+timescale 1ns / 1ps
+
+module toUpper_tb;
+    reg [7:0] char_in;
+    wire[7:0] char_out;
+
+    toUpper uut (
+        .char_in(char_in),
+        .char_out(char_out)
+    );
+
+    initial begin
+        $dumpfile("toUpper.vcd");
+        $dumpfile(0, to Upper_tb);
+       
+        char_in = 8'd97; // 'a' > should output 'A'
+        #20;
+
+        char_in = 8'd122;
+        #20;
+        
+        char_in = 8'd65;
+        #20;
+
+        char_in = 8' d48;
+        #20;
+
+        char_in = 8' d100;
+        #20;
+
+
+        $stop;
+    end
+
+endmodule
+
+
+endmodule
+
+
+| A | B | C | S (Output) 
+| 0 | 0 | 0 | 0 
+| 0 | 0 | 1 | 0
+| 0 | 1 | 0 | 0
+| 0 | 1 | 1 | 1 
+| 1 | 0 | 0 | 0
+| 1 | 0 | 1 | 0
+| 1 | 1 | 0 | 0
+| 1 | 1 | 1 | 0
+

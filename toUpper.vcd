@@ -1,0 +1,39 @@
+module toUpper(
+
+input [7:0] char_in,
+output [7:0] char_out                                               
+
+);
+
+wire not7, bit6, in_range;
+
+  genvar i;
+  generate
+   
+    for(i = 0; i < 8; i = i + 1) begin : gen_upper
+        wire masked_bit, pass_bit, not_range, use_maked, use_maked, use_original;
+        if (i==5) begin
+            and (masked_bit, char_in[i], 1'b0);
+        end else begin
+            assign masked_bit = char_in[i];
+            end
+            not (not_range, in_range);
+            and (use_maked, masked_bit, in_range);
+            and (use_original, char_in[i], not_range);
+            or (char_out[i], use_maked, use_original);
+        end
+   endgenerate
+ 
+endmodule
+
+    assign in_range = (char_in >= 8'd97) && (char_in <= 8'd122);
+
+    assign char_out =in_range ? (char_in & 8'b11011111) : char_in;
+
+
+
+
+endmodule
+
+
+
